@@ -1,9 +1,27 @@
 #!/usr/bin/env groovy
+@Library('evenOdd') _
+import Properties
+import DB
+
+def _CTC_DB_VERSION
+def ORACLE_TNS
 
 pipeline {
     // Node to build
-    agent {node {label 'Main'} }
+//    agent {node {label 'Main'} }
+    agent any
 
+    properties([
+            disableConcurrentBuilds(),
+            parameters([
+                    choice(
+                            name: 'ENVIRONMENT',
+                            choices: DB.envList(),
+                            description: DB.envDescription()
+                    )
+
+            ])
+    ])
         stages {
             // On this stage, script difference_db.cmd compare database difference and generate a report in the text file.
             stage('Compare Database Difference') {
@@ -13,53 +31,22 @@ pipeline {
                             string(credentialsId: "CI_DB_PMC_SYSTEM_PASSW", variable: 'CI_DB_PMC_SYSTEM_PASSW'),
                     ])
                             {
-                                bat '''cd Scripts/difference_db/
-        if "%ENVIRONMENT%" equ "TST1" (
-        difference_db.cmd CTCTST1 %CI_DB_PMC_SYSTEM_PASSW%
-        )
-        if "%ENVIRONMENT%" equ "TST3" (
-        difference_db.cmd CTCTST3 %CI_DB_PMC_SYSTEM_PASSW%
-        )
-        if "%ENVIRONMENT%" equ "TST5" (
-        difference_db.cmd CTCTST5 %CI_DB_PMC_SYSTEM_PASSW%
-        )
-        if "%ENVIRONMENT%" equ "PUBLIC" (
-        difference_db.cmd CTCPUB %CI_DB_PMC_SYSTEM_PASSW%
-        )'''
+                                dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
                             }
                     echo 'Compared Database Difference!'
+                    _CTC_DB_VERSION=dbUtils.createReport()
                 }
             }
             // On this stage, mvn wagon:upload-single plugin upload report to Nexus.
             stage('Upload Report to Nexus') {
                 steps {
                     echo 'Uploading Report to Nexus...'
-                    script {
-                        def filename = powershell(script: 'dir Scripts/difference_db/*.txt | Select -Last 1 -Exp name', returnStdout: true)
-                        println("file_name = ${filename}")
 
-                        withMaven() {
-                            bat " mvn wagon:upload-single \
-                   -Dwagon.url=%PROJECT_REPOSITORY%/raw-artifacts/releases/difference_db \
-                   -Dwagon.serverId=epm-ctc-raw-artifacts \
-                   -Dwagon.fromFile=Scripts/difference_db/${filename} \
-                   -Dwagon.toFile=releases/difference_db/${filename}.txt "
+                    msteamsMessage += promoteRawJob(Properties.RawArtifact.DIFFERENCE_DB, Properties.RawArtifact.DIFFERENCE_DB.code)
 
-                        }
-                    }
                     echo 'Uploaded Report to Nexus!'
                 }
             }
-            // On this stage, Jenkins archive artifacts.
-            stage('Archive Artifacts') {
-                steps {
-                    echo 'Archiving Artifacts...'
-                    archiveArtifacts 'Scripts/difference_db/*.txt'
-                    echo 'Archived Artifacts!'
-                }
-            }
-
-
         }
 
     // Send email notification.
@@ -67,32 +54,13 @@ pipeline {
 
          success {
             echo 'Sending email notification...'
-            script {
-                def filename = powershell(script: 'dir Scripts/difference_db/*.txt | Select -Last 1 -Exp name', returnStdout: true)
-                println("file_name = ${filename}")
+             mailNotify(
+                     "${_CTC_DB_VERSION}"
 
-                emailext attachLog: "false", attachmentsPattern: "Scripts/difference_db/${filename}",
-                        body: '''<p>Dear Colleagues,</p>
-                        <p> </p>
-                        <p></a>. </p>
-                        <p> </p>
-                        <p>Please find attached difference of database structure for coming CTC release 19.11.</a>.</p>
-                        <p> </p>
-                        <p>Thank you.</p>''',
-                        recipientProviders: [[$class: 'RequesterRecipientProvider']],
-                        subject: "Report of CTC DB structure changes: ${filename}",
-                        to: "Pavel_Horbach1@epam.com,Dmitry_Rubin@epam.com,Ihar_Ilmovsky@epam.com,WFTInternalApplicationsReporting@epam.com"
-                        cc: "SpecialEPM-CTCLeaders@epam.com"
-            }
+             )
              echo 'Email notification sent!'
         }
     }
-      // On this stage, directory Scripts/difference_db/ clear files with format txt.
-//    stage('Clear') {
-//        steps {
-//            bat ''' cd Scripts/difference_db/
-//                   del *.txt '''
-//        }
-//    }
+
 
 }
