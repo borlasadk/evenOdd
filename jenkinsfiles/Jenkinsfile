@@ -6,10 +6,10 @@ import DB
 def _CTC_DB_VERSION
 def ORACLE_TNS
 
-pipeline {
+node {
     // Node to build
 //    agent {node {label 'Main'} }
-    agent any
+
 
     properties([
             disableConcurrentBuilds(),
