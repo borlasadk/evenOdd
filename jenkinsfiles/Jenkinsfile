@@ -22,7 +22,7 @@ node {
 
             ])
     ])
-        stages {
+
             // On this stage, script difference_db.cmd compare database difference and generate a report in the text file.
             stage('Compare Database Difference') {
                 steps {
@@ -47,7 +47,7 @@ node {
                     echo 'Uploaded Report to Nexus!'
                 }
             }
-        }
+
 
     // Send email notification.
     post {
