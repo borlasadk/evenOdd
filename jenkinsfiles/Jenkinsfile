@@ -5,7 +5,7 @@ import DB
 
 def _CTC_DB_VERSION
 def ORACLE_TNS
-def CI_DB_PMC_SYSTEM_PASSW='sqlsql'
+
 node('CI') {
     // Node to build
 //    agent {node {label 'Main'} }
@@ -43,7 +43,7 @@ node('CI') {
 //             withCredentials([
 //                     string(credentialsId: 'CI_DB_PMC_SYSTEM_PASSW', variable: 'CI_DB_PMC_SYSTEM_PASSW')
 //             ])
-
+                         def CI_DB_PMC_SYSTEM_PASSW='sqlsql'
                          dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
 
              echo 'Compared Database Difference!'
