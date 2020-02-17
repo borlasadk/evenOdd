@@ -22,7 +22,10 @@ node('CI') {
 
             ])
     ])
-
+           stage('get env vars') {
+                (ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW) = DB.envList(ENVIRONMENT)
+                _CTC_DB_VERSION=dbUtils.createReport()
+    }
             // On this stage, script difference_db.cmd compare database difference and generate a report in the text file.
             stage('Compare Database Difference') {
 
@@ -34,7 +37,7 @@ node('CI') {
                                 dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
                             }
                     echo 'Compared Database Difference!'
-                    _CTC_DB_VERSION=dbUtils.createReport()
+//                    _CTC_DB_VERSION=dbUtils.createReport()
 
             }
             // On this stage, mvn wagon:upload-single plugin upload report to Nexus.
