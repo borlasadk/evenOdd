@@ -6,7 +6,7 @@ import DB
 def _CTC_DB_VERSION
 def ORACLE_TNS
 
-node {
+node('CI') {
     // Node to build
 //    agent {node {label 'Main'} }
 
