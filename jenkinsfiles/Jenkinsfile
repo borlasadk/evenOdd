@@ -22,10 +22,10 @@ node('CI') {
 
             ])
     ])
-    environment {
-        CI_DB_PMC_SYSTEM_PASSW = credentials('CI_DB_PMC_SYSTEM_PASSW')
-
-    }
+//    environment {
+//        CI_DB_PMC_SYSTEM_PASSW = credentials('CI_DB_PMC_SYSTEM_PASSW')
+//
+//    }
  //    try {
 //         stage('get env vars') {
 //
@@ -38,9 +38,9 @@ node('CI') {
 
              echo 'Comparing Database Difference...'
              (ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW) = DB.envList(ENVIRONMENT)
-//             withCredentials([
-//                     string(credentialsId: "CI_DB_PMC_SYSTEM_PASSW", variable: 'CI_DB_PMC_SYSTEM_PASSW'),
-//             ])
+             withCredentials([
+                     string(credentialsId: 'CI_DB_PMC_SYSTEM_PASSW', variable: 'CI_DB_PMC_SYSTEM_PASSW'),
+             ])
                      {
                          dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
                      }
