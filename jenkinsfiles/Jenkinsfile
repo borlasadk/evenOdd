@@ -22,7 +22,7 @@ node('CI') {
 
             ])
     ])
-     try {
+ //    try {
          stage('get env vars') {
 
              (ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW) = DB.envList(ENVIRONMENT)
@@ -53,38 +53,38 @@ node('CI') {
              echo 'Uploaded Report to Nexus!'
 
          }
-         currentBuild.result = 'SUCCESS'
-     } catch (Exception err) {
-         println "Error: ${err}"
-         currentBuild.result = 'FAILURE'
-     } finally {
-         switch (currentBuild.result) {
-             case 'SUCCESS':
-                 mailNotify(
-                     "${_CTC_DB_VERSION}"
-                 )
-//                 msteamsNotify.success("Build success")
-                 break
-             case 'FAILURE':
-//                 msteamsNotify.fail("Build failed")
-                 break
-             default:
-                 break
-         }
-     }
+//         currentBuild.result = 'SUCCESS'
+//     } catch (Exception err) {
+//         println "Error: ${err}"
+//         currentBuild.result = 'FAILURE'
+//     } finally {
+//         switch (currentBuild.result) {
+//             case 'SUCCESS':
+//                 mailNotify(
+//                     "${_CTC_DB_VERSION}"
+//                 )
+////                 msteamsNotify.success("Build success")
+//                 break
+//             case 'FAILURE':
+////                 msteamsNotify.fail("Build failed")
+//                 break
+//             default:
+//                 break
+//         }
+//     }
 
     // Send email notification.
-//    post {
-//
-//         success {
-//            echo 'Sending email notification...'
-//             mailNotify(
-//                     "${_CTC_DB_VERSION}"
-//
-//             )
-//             echo 'Email notification sent!'
-//        }
-//    }
+    post {
+
+         success {
+            echo 'Sending email notification...'
+             mailNotify(
+                     "${_CTC_DB_VERSION}"
+
+             )
+             echo 'Email notification sent!'
+        }
+    }
 
 
 }
