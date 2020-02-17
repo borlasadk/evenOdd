@@ -22,51 +22,69 @@ node('CI') {
 
             ])
     ])
+     try {
+         stage('get env vars') {
 
-            stage('get env vars') {
-                steps {
-                    (ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW) = DB.envList(ENVIRONMENT)
-                    _CTC_DB_VERSION = dbUtils.createReport()
-                }
-    }
-            // On this stage, script difference_db.cmd compare database difference and generate a report in the text file.
-            stage('Compare Database Difference') {
+             (ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW) = DB.envList(ENVIRONMENT)
+             _CTC_DB_VERSION = dbUtils.createReport()
 
-                    echo 'Comparing Database Difference...'
-                    withCredentials([
-                            string(credentialsId: "CI_DB_PMC_SYSTEM_PASSW", variable: 'CI_DB_PMC_SYSTEM_PASSW'),
-                    ])
-                            {
-                                dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
-                            }
-                    echo 'Compared Database Difference!'
+         }
+         // On this stage, script difference_db.cmd compare database difference and generate a report in the text file.
+         stage('Compare Database Difference') {
+
+             echo 'Comparing Database Difference...'
+             withCredentials([
+                     string(credentialsId: "CI_DB_PMC_SYSTEM_PASSW", variable: 'CI_DB_PMC_SYSTEM_PASSW'),
+             ])
+                     {
+                         dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
+                     }
+             echo 'Compared Database Difference!'
 //                    _CTC_DB_VERSION=dbUtils.createReport()
 
-            }
-            // On this stage, mvn wagon:upload-single plugin upload report to Nexus.
-            stage('Upload Report to Nexus') {
+         }
+         // On this stage, mvn wagon:upload-single plugin upload report to Nexus.
+         stage('Upload Report to Nexus') {
 
-                    echo 'Uploading Report to Nexus...'
+             echo 'Uploading Report to Nexus...'
 
-                    msteamsMessage += promoteRawJob(Properties.RawArtifact.DIFFERENCE_DB, Properties.RawArtifact.DIFFERENCE_DB.code)
+             msteamsMessage += promoteRawJob(Properties.RawArtifact.DIFFERENCE_DB, Properties.RawArtifact.DIFFERENCE_DB.code)
 
-                    echo 'Uploaded Report to Nexus!'
+             echo 'Uploaded Report to Nexus!'
 
-            }
-
+         }
+         currentBuild.result = 'SUCCESS'
+     } catch (Exception err) {
+         println "Error: ${err}"
+         currentBuild.result = 'FAILURE'
+     } finally {
+         switch (currentBuild.result) {
+             case 'SUCCESS':
+                 mailNotify(
+                     "${_CTC_DB_VERSION}"
+                 )
+//                 msteamsNotify.success("Build success")
+                 break
+             case 'FAILURE':
+//                 msteamsNotify.fail("Build failed")
+                 break
+             default:
+                 break
+         }
+     }
 
     // Send email notification.
-    post {
-
-         success {
-            echo 'Sending email notification...'
-             mailNotify(
-                     "${_CTC_DB_VERSION}"
-
-             )
-             echo 'Email notification sent!'
-        }
-    }
+//    post {
+//
+//         success {
+//            echo 'Sending email notification...'
+//             mailNotify(
+//                     "${_CTC_DB_VERSION}"
+//
+//             )
+//             echo 'Email notification sent!'
+//        }
+//    }
 
 
 }
