@@ -44,7 +44,7 @@ node('CI') {
 //                     string(credentialsId: 'CI_DB_PMC_SYSTEM_PASSW', variable: 'CI_DB_PMC_SYSTEM_PASSW')
 //             ])
            //              def CI_DB_PMC_SYSTEM_PASSW='sqlsql'
-                         exec("dir ")
+                         exec("chcp1251 >nul\n dir ")
            //              dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
 
              echo 'Compared Database Difference!'
