@@ -34,8 +34,8 @@ class Properties {
     }
 
     class Git {
-        static String API_URL = "https://github.com/borlasadk/evenOdd.git"
-        static String API_CRED_ID = "jenkins-intengration"
+        static String API_URL = "git@github.com:borlasadk/evenOdd.git"
+        static String API_CRED_ID = "JenkinsSSH"
     }
 
 
