@@ -5,6 +5,7 @@ import DB
 
 def _CTC_DB_VERSION
 def ORACLE_TNS
+def msteamsMessage=[ ]
 
 
 node('CI') {
