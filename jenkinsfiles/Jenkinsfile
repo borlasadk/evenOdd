@@ -15,9 +15,9 @@ node('CI') {
             disableConcurrentBuilds(),
             parameters([
                     gitParameter(
-                            branch: 'origin/master',
+                            branch: '',
                             branchFilter: '.*',
-                            defaultValue: '',
+                            defaultValue: 'origin/master',
                             description: 'Test branches',
                             name: 'API_GIT_BRANCH',
                             quickFilterEnabled: false,
