@@ -66,7 +66,7 @@ node('CI') {
 //                         exec("chcp 1251 >nul\n dir ")
                      {
                          echo "My secret text is '${SECRET}'"
-                         def CI_DB_PMC_SYSTEM_PASSW="'${SECRET}'"
+                         def CI_DB_PMC_SYSTEM_PASSW="${SECRET}"
                          echo "My secret text is '${CI_DB_PMC_SYSTEM_PASSW}'"
                          dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
                      }
