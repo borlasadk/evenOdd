@@ -42,7 +42,7 @@ node('CI') {
 //    }
  //    try {
          stage('checkout') {
-           gitCheckout(Properties.Git.API_CRED_ID, Properties.Git.API_URL, git branch:master)
+           gitCheckout(Properties.Git.API_CRED_ID, Properties.Git.API_URL, branch:master)
          }
          stage('get env vars') {
 
