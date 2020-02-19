@@ -47,7 +47,7 @@ node('CI') {
          }
          stage('get env vars') {
 
-             (ORACLE_TNS, SECRET) = DB.envList(ENVIRONMENT)
+             (ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW) = DB.envList(ENVIRONMENT)
 //             _CTC_DB_VERSION = dbUtils.createReport()
 
          }
@@ -66,7 +66,7 @@ node('CI') {
 //                         exec("chcp 1251 >nul\n dir ")
                      {
                          echo "My secret text is '${SECRET}'"
-                         dbUtils.createReport(ORACLE_TNS, SECRET)
+                         dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
                      }
              echo 'Compared Database Difference!'
 //                    _CTC_DB_VERSION=dbUtils.createReport()
