@@ -58,13 +58,13 @@ node('CI') {
              echo 'Comparing Database Difference...'
 //             (ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW) = DB.envList(ENVIRONMENT)
              withCredentials([
-                     string(credentialsId: 'CI_DB_PMC_SYSTEM_PASSW', variable: 'SECRET')
+                     string(credentialsId: 'CI_DB_PMC_SYSTEM_PASSW', variable: 'CI_DB_PMC_SYSTEM_PASSW')
 
              ])
            //              def CI_DB_PMC_SYSTEM_PASSW='sqlsql'
 //                         exec("chcp 1251 >nul\n dir ")
                      {
-                         echo "My secret text is '${SECRET}'"
+                         echo "My secret text is '${CI_DB_PMC_SYSTEM_PASSW}'"
 //                         dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
                      }
              echo 'Compared Database Difference!'
