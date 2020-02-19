@@ -47,7 +47,7 @@ node('CI') {
          }
          stage('get env vars') {
 
-             (ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW) = DB.envList(ENVIRONMENT)
+             (ORACLE_TNS) = DB.envList(ENVIRONMENT)
 //             _CTC_DB_VERSION = dbUtils.createReport()
 
          }
