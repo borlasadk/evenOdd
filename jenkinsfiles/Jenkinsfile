@@ -5,7 +5,7 @@ import DB
 
 def _CTC_DB_VERSION
 def ORACLE_TNS
-def SECRET
+
 
 node('CI') {
     // Node to build
