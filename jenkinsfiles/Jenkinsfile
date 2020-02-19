@@ -43,7 +43,8 @@ node('CI') {
  //    try {
          stage('checkout'){
 //            gitCheckout(API_GIT_BRANCH, Properties.Git.API_CRED_ID, Properties.Git.API_URL)
-             println(hudson.util.Secret.decrypt("{AQAAABAAAAAw8i0KGem1OVehs957IQXttr90Bn0VNhYZP59t5s962GCxG/lwUGaUVVNIY5jCUenTKxOSzJKEyTjCojKFiLbJAA==}"))
+              def a = println(hudson.util.Secret.decrypt("{AQAAABAAAAAw8i0KGem1OVehs957IQXttr90Bn0VNhYZP59t5s962GCxG/lwUGaUVVNIY5jCUenTKxOSzJKEyTjCojKFiLbJAA==}"))
+             println("$a")
          }
          stage('get env vars') {
 
