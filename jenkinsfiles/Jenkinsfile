@@ -14,20 +14,20 @@ node('CI') {
     properties([
             disableConcurrentBuilds(),
             parameters([
-                    gitParameter(
-                            branch: '',
-                            branchFilter: '.*',
-                            defaultValue: '',
-                            description: 'Test branches',
-                            name: 'API_GIT_BRANCH',
-                            quickFilterEnabled: false,
-                            selectedValue: 'NONE',
-                            sortMode: 'DESCENDING',
-                            tagFilter: '*',
-                            type: 'PT_BRANCH',
-                            useRepository: Properties.Git.API_URL,
-                            listSize: '15'
-                    ),
+//                    gitParameter(
+//                            branch: '',
+//                            branchFilter: '.*',
+//                            defaultValue: '',
+//                            description: 'Test branches',
+//                            name: 'API_GIT_BRANCH',
+//                            quickFilterEnabled: false,
+//                            selectedValue: 'NONE',
+//                            sortMode: 'DESCENDING',
+//                            tagFilter: '*',
+//                            type: 'PT_BRANCH',
+//                            useRepository: Properties.Git.API_URL,
+//                            listSize: '15'
+//                    ),
                     choice(
                             name: 'ENVIRONMENT',
                             choices: DB.envList(),
@@ -42,7 +42,7 @@ node('CI') {
 //    }
  //    try {
          stage('checkout') {
-           gitCheckout(Properties.Git.API_CRED_ID, Properties.Git.API_URL, API_GIT_BRANCH)
+           gitCheckout(Properties.Git.API_CRED_ID, Properties.Git.API_URL, git branch:master)
          }
          stage('get env vars') {
 
