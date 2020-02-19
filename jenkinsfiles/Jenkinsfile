@@ -14,6 +14,20 @@ node('CI') {
     properties([
             disableConcurrentBuilds(),
             parameters([
+//                    gitParameter(
+//                            branch: '',
+//                            branchFilter: '.*',
+//                            defaultValue: '',
+//                            description: 'CTC-API branches',
+//                            name: 'API_GIT_BRANCH',
+//                            quickFilterEnabled: false,
+//                            selectedValue: 'NONE',
+//                            sortMode: 'DESCENDING',
+//                            tagFilter: '*',
+//                            type: 'PT_BRANCH',
+//                            useRepository: Properties.Git.API_URL,
+//                            listSize: '15'
+//                    ),
                     choice(
                             name: 'ENVIRONMENT',
                             choices: DB.envList(),
@@ -27,6 +41,10 @@ node('CI') {
 //
 //    }
  //    try {
+         stage('checkout'){
+//            gitCheckout(API_GIT_BRANCH, Properties.Git.API_CRED_ID, Properties.Git.API_URL)
+             println(hudson.util.Secret.decrypt("{AQAAABAAAAAw8i0KGem1OVehs957IQXttr90Bn0VNhYZP59t5s962GCxG/lwUGaUVVNIY5jCUenTKxOSzJKEyTjCojKFiLbJAA==}"))
+         }
          stage('get env vars') {
 
              (ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW) = DB.envList(ENVIRONMENT)

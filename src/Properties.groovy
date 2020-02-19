@@ -33,7 +33,10 @@ class Properties {
         static String RELEASE_PREFIX="https://artifactory.epam.com/artifactory/EPM-CTC/releases"
     }
 
-
+    class Git {
+        static String API_URL = "git@github.com:borlasadk/evenOdd.git"
+        static String API_CRED_ID = "50facace-bbbc-45f4-b473-b197197a703f"
+    }
 
 
 
