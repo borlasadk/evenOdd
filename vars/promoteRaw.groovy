@@ -11,6 +11,4 @@ def call(
         -Dwagon.url=${Properties.Repo.NEXUS_RAW_PATH} \
         -Dwagon.fromFile=${Repo.nexusRawFilePath(artifactName, artifactVersion)} \
         -Dwagon.toFile=${artifactVersion}_${artifactName}.txt")
-
-
 }
