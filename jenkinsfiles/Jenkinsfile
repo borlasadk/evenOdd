@@ -99,17 +99,19 @@ node('CI') {
 //     }
 
     // Send email notification.
+pipeline {
+    agent any
     post {
 
-         success {
+        success {
             echo 'Sending email notification...'
-             mailNotify(
-                     "${_CTC_DB_VERSION}"
+            mailNotify(
+                    "${_CTC_DB_VERSION}"
 
-             )
-             echo 'Email notification sent!'
+            )
+            echo 'Email notification sent!'
         }
     }
-
+}
 
 }
