@@ -61,8 +61,8 @@ node('CI') {
                      {
                          dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
                                               }
-             script {def _CTC_DB_VERSION = println bat(script: "cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} sqlsql", returnStdout:true)
-                 println("file_name = ${_CTC_DB_VERSION}")}
+             script {def a = println bat(script: "cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} sqlsql", returnStdout:true)
+                 println("file_name = ${a}")}
              echo 'Compared Database Difference!'
 
 
