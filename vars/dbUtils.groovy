@@ -5,7 +5,7 @@ def createReport(
         String CI_DB_PMC_SYSTEM_PASSW
 ) {
     exec("cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} ${CI_DB_PMC_SYSTEM_PASSW}")
-    def fileContents = readFile "version.properties"
+    def fileContents = readFile "Scripts\\difference_db\\version.properties"
     return fileContents
 }
 
