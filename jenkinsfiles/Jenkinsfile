@@ -49,7 +49,8 @@ node('CI') {
          stage('get env vars') {
 
              (ORACLE_TNS) = DB.envList(ENVIRONMENT)
-//             _CTC_DB_VERSION = dbUtils.createReport()
+             _CTC_DB_VERSION=dbUtils.pmvDBVersion
+             echo "${_CTC_DB_VERSION}"
 
          }
          // On this stage, script difference_db.cmd compare database difference and generate a report in the text file.
@@ -69,7 +70,7 @@ node('CI') {
 
                          //echo "My secret text is '${CI_DB_PMC_SYSTEM_PASSW}'"
                          dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
-                         _CTC_DB_VERSION=dbUtils.createReport()
+
                      }
              echo 'Compared Database Difference!'
 
