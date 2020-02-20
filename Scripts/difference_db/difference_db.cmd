@@ -29,5 +29,5 @@ for /F "usebackq tokens=* delims=" %%i In ("version.properties") do set _CTC_DB_
 
 echo on
 sqlplus %_SCHEMA%/%_PASSW%@%_TNS_NAME% @difference_db.sql
-echo %_CTC_DB_VERSION%
+
 
