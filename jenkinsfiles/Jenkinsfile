@@ -3,7 +3,7 @@
 import Properties
 import DB
 
-def _CTC_DB_VERSION
+//def _CTC_DB_VERSION
 def ORACLE_TNS
 def msteamsMessage=[ ]
 
@@ -59,13 +59,10 @@ node('CI') {
              ])
 
                      {
-
-
                          dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
-                         _CTC_DB_VERSION = exec(script:"cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} ${CI_DB_PMC_SYSTEM_PASSW}", returnStdout:true)
-                         echo "${_CTC_DB_VERSION}"
-
-                     }
+                                              }
+             script {def _CTC_DB_VERSION = println exec(script:"cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} ${CI_DB_PMC_SYSTEM_PASSW}", returnStdout:true)
+                 println("file_name = ${_CTC_DB_VERSION}")}
              echo 'Compared Database Difference!'
 
 
