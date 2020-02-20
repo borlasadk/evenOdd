@@ -56,7 +56,7 @@ class Properties {
 
 
     enum RawArtifact {
-        DIFFERENCE_DB('DIFFERENCE_DB', 'difference_db')
+        DIFFERENCE_DB('DIFFERENCE', 'difference')
 
 
         RawArtifact(String name, String code){
