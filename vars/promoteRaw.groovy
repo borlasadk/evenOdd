@@ -7,7 +7,7 @@ def call(
     String artifactName,
     String artifactVersion
 ) {
-    artifactVersion = dbUtils.createReport(fileContents)
+    artifactVersion = dbUtils.versionGet()
     mvnExec("wagon:download-single \
         -Dwagon.url=${Properties.Repo.NEXUS_RAW_PATH} \
         -Dwagon.fromFile=${Repo.nexusRawFilePath(artifactVersion, artifactName)} \
