@@ -8,9 +8,9 @@ def createReport(
 }
 
 def versionReport(
-        String _CTC_DB_VERSION
+
 )
 {
-    ${_CTC_DB_VERSION} = powershell(script: 'dir Scripts/difference_db/*.txt | Select -Last 1 -Exp name', returnStdout: true)
+    _CTC_DB_VERSION = powershell(script: 'dir Scripts/difference_db/*.txt | Select -Last 1 -Exp name', returnStdout: true)
 }
 
