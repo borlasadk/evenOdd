@@ -8,7 +8,7 @@ def call(
 ) {
     mail to: Properties.Emails.EMAIL_TEST,
          cc: Properties.Emails.EMAIL_TEST,
-        subject: "Report of CTC DB structure changes: ${dbUtils.versionGet}_${promoteRaw.artifactName}",
+        subject: "Report of CTC DB structure changes: ${dbUtils.versionGet()}_${promoteRaw.artifactName}",
         body:  '''<p>Dear Colleagues,</p>
                         <p> </p>
                         <p></a>. </p>
@@ -16,7 +16,7 @@ def call(
                         <p>Please find attached difference of database structure for coming CTC release 19.11.</a>.</p>
                         <p> </p>
                         <p>Thank you.</p>''',
-        attachmentsPattern: "${Properties.Paths.DIFFERENCE_DB_DIR}${dbUtils.versionGet}_${promoteRaw.artifactName}.txt"
+        attachmentsPattern: "${Properties.Paths.DIFFERENCE_DB_DIR}${dbUtils.versionGet()}_${promoteRaw.artifactName}.txt"
 }
 
 def call(
