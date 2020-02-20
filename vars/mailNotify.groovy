@@ -3,12 +3,12 @@
 import Properties
 
 def call(
-    String _CTC_DB_VERSION
+
 
 ) {
-    mail to: Properties.Emails.EMAIL_DIFFERENCE_DB_LIST,
-         cc: Properties.Emails.EMAIL_LEADER_LIST,
-        subject: "Report of CTC DB structure changes: ${_CTC_DB_VERSION}",
+    mail to: Properties.Emails.EMAIL_TEST,
+         cc: Properties.Emails.EMAIL_TEST,
+        subject: "Report of CTC DB structure changes: ${promoteRaw.artifactVersion}_${promoteRaw.artifactName}",
         body:  '''<p>Dear Colleagues,</p>
                         <p> </p>
                         <p></a>. </p>
@@ -16,7 +16,7 @@ def call(
                         <p>Please find attached difference of database structure for coming CTC release 19.11.</a>.</p>
                         <p> </p>
                         <p>Thank you.</p>''',
-        attachmentsPattern: "${_CTC_DB_VERSION}.txt"
+        attachmentsPattern: "${Properties.Paths.DIFFERENCE_DB_DIR}${promoteRaw.artifactVersion}_${promoteRaw.artifactName}.txt"
 }
 
 def call(
