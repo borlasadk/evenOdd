@@ -86,7 +86,6 @@ node('CI') {
          switch (currentBuild.result) {
              case 'SUCCESS':
                  mailNotify(
-                     "${_CTC_DB_VERSION}"
                  )
 //                 msteamsNotify.success("Build success")
                  break
