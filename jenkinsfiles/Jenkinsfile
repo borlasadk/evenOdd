@@ -3,7 +3,7 @@
 import Properties
 import DB
 
-//def _CTC_DB_VERSION
+def _CTC_DB_VERSION
 def ORACLE_TNS
 def msteamsMessage=[ ]
 
@@ -46,6 +46,7 @@ node('CI') {
          stage('get env vars') {
 
              (ORACLE_TNS) = DB.envList(ENVIRONMENT)
+             _CTC_DB_VERSION = dbUtils.Version()
 
          }
          // On this stage, script difference_db.cmd compare database difference and generate a report in the text file.
@@ -61,8 +62,8 @@ node('CI') {
                      {
                          dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
                                               }
-             script {def a = println bat(script: "cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} sqlsql", returnStdout:true)
-                 println("file_name = ${a}")}
+//             script {def a = println bat(script: "cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} sqlsql", returnStdout:true)
+//                 println("file_name = ${a}")}
              echo 'Compared Database Difference!'
 
 
