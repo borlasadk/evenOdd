@@ -8,7 +8,7 @@ def call(
 ) {
     mail to: Properties.Emails.EMAIL_TEST,
          cc: Properties.Emails.EMAIL_TEST,
-        subject: "Report of CTC DB structure changes: ${dbUtils.versionGet()}_${PromoteRaw.artifactName()}",
+        subject: "Report of CTC DB structure changes: ${dbUtils.versionGet()}",
         body:  '''<p>Dear Colleagues,</p>
                         <p> </p>
                         <p></a>. </p>
