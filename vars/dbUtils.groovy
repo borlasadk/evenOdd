@@ -5,7 +5,7 @@ def createReport(
         String CI_DB_PMC_SYSTEM_PASSW
 ) {
     exec("cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} ${CI_DB_PMC_SYSTEM_PASSW}")
-    return "test"
+    return System.getenv("_CTC_DB_VERSION")
 }
 
 def versionReport(
