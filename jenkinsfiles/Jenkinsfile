@@ -69,9 +69,10 @@ node('CI') {
 
                          //echo "My secret text is '${CI_DB_PMC_SYSTEM_PASSW}'"
                          dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
+                         _CTC_DB_VERSION=dbUtils.createReport()
                      }
              echo 'Compared Database Difference!'
-                    _CTC_DB_VERSION=dbUtils.createReport()
+
 
          }
          // On this stage, mvn wagon:upload-single plugin upload report to Nexus.
