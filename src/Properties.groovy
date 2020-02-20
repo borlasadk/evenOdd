@@ -22,6 +22,7 @@ class Properties {
         static String PROJECT_DIR="\\\\epbyminsa0100.minsk.epam.com\\Projects\\EPM-CTC"
         static String PROJECT_REPOSITORY="http://ci.epm-ctc.projects.epam.com:8081/repository"
         static String SCRIPTS_DIR="D:\\Jenkins_WS\\Common\\CI\\Scripts"
+        static String DIFFERENCE_DB_DIR="Scripts\\difference_db"
         static String WS_DIR="D:\\Jenkins_WS"
         static String WS_DIR_MASTER="\\\\ci.epm-ctc.projects.epam.com\\Jenkins_WS"
     }

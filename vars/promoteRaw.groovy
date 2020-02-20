@@ -10,6 +10,6 @@ def call(
     artifactVersion = dbUtils.versionGet()
     mvnExec("wagon:download-single \
         -Dwagon.url=${Properties.Repo.NEXUS_RAW_PATH} \
-        -Dwagon.fromFile=${Repo.nexusRawFilePath(artifactName, artifactVersion)} \
-        -Dwagon.toFile=${artifactVersion}_${artifactName}.txt")
+        -Dwagon.fromFile=${Properties.Paths.DIFFERENCE_DB_DIR}${artifactVersion}_${artifactName}.txt \
+        -Dwagon.toFile=${Repo.nexusRawFilePath(artifactName, artifactVersion)}")
 }
