@@ -6,7 +6,7 @@ def call(
 
 
 ) {
-    mail to: Properties.Emails.EMAIL_TEST,
+    emailext to: Properties.Emails.EMAIL_TEST,
          cc: Properties.Emails.EMAIL_TEST,
         subject: "Report of CTC DB structure changes: ${dbUtils.versionGet()}",
         body:  '''<p>Dear Colleagues,</p>
@@ -25,7 +25,7 @@ def call(
     String buildUrl,
     String email
 ) {
-    mail to: "${email}", 
+    emailext to: "${email}",
         subject: "The pipeline ${fullDisplayName}", 
         body:  "Build # ${buildNumber}: \nCheck console output at ${buildUrl} to view the results."
 }
