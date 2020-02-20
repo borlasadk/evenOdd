@@ -11,10 +11,10 @@ def createReport(
 
 def versionGet()
 {
-    readFile "Scripts\\difference_db\\version.properties" as String
+    fileContents = readFile "Scripts\\difference_db\\version.properties" as String
 //    fileContents = readFile "Scripts\\difference_db\\version.properties" as String
 //    return fileContents.trim()
-    return
+    return fileContents.trim()
 }
 
 
