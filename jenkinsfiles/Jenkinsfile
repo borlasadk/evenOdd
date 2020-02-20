@@ -103,6 +103,12 @@ node('CI') {
 }
 pipeline {
     agent any
+    stages {
+        stage {'Send Email'}
+        steps{
+            echo 'Send Email'
+        }
+    }
     post {
 
         success {
