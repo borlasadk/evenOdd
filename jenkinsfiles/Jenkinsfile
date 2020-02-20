@@ -99,6 +99,8 @@ node('CI') {
 //     }
 
     // Send email notification.
+
+}
 pipeline {
     agent any
     post {
@@ -112,6 +114,4 @@ pipeline {
             echo 'Email notification sent!'
         }
     }
-}
-
 }
