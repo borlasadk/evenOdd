@@ -4,7 +4,13 @@ def createReport(
         String ORACLE_TNS,
         String CI_DB_PMC_SYSTEM_PASSW
 ) {
-    return exec("cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} ${CI_DB_PMC_SYSTEM_PASSW}", true).trim().split()[-1]
+    exec("cd Scripts\\difference_db\\ && difference_db.cmd ${ORACLE_TNS} ${CI_DB_PMC_SYSTEM_PASSW}")
 }
 
+def versionReport(
+        String _CTC_DB_VERSION
+)
+{
+    ${_CTC_DB_VERSION} = powershell(script: 'dir Scripts/difference_db/*.txt | Select -Last 1 -Exp name', returnStdout: true)
+}
 
