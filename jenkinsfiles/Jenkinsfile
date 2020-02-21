@@ -87,7 +87,7 @@ node('CI') {
              case 'SUCCESS':
                  mailNotify(
                  )
-//                 msteamsNotify.success("Build success")
+                 msteamsNotify.success("Build success")
                  break
              case 'FAILURE':
 //                 msteamsNotify.fail("Build failed")
