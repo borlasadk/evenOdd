@@ -11,9 +11,9 @@ def msteamsMessage=[ ]
 node('CI') {
     // Node to build
 //    agent {node {label 'Main'} }
-    currentBuild.displayName = '\'Project for comparing database difference\' ' +
-            '(compare difference)) to \'' +
-            'Report on the difference between tables and views of two databases'
+//    currentBuild.displayName = '\'Project for comparing database difference\' ' +
+//            '(compare difference)) to \'' +
+//            'Report on the difference between tables and views of two databases'
     def jobUserId, jobUserName
 //then somewhere
     wrap([$class: 'BuildUser']) {
