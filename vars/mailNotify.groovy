@@ -7,7 +7,7 @@ def call(
 
 ) {
     emailext to: Properties.Emails.EMAIL_TEST,
-             cc: Properties.Emails.EMAIL_TEST,
+             bcc: Properties.Emails.EMAIL_TEST,
              subject: "Report of CTC DB structure changes: ${dbUtils.versionGet()}",
              body:  '''<p>Dear Colleagues,</p>
                         <p> </p>
