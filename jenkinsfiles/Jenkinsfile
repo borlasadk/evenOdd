@@ -11,7 +11,12 @@ def msteamsMessage=[ ]
 node('CI') {
     // Node to build
 //    agent {node {label 'Main'} }
-
+    currentBuild.description = '\'Project for comparing database difference\' ' +
+            '(compare difference)) to \'' +
+            'Report on the difference between tables and views of two databases'
+    wrap([$class: 'BuildUser']) {
+        def user = env.BUILD_USER_ID
+    }
 
     properties([
             disableConcurrentBuilds(),
@@ -90,7 +95,7 @@ node('CI') {
                  msteamsNotify.success("Build success")
                  break
              case 'FAILURE':
-//                 msteamsNotify.fail("Build failed")
+                 msteamsNotify.fail("Build failed")
                  break
              default:
                  break
