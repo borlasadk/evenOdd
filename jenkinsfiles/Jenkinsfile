@@ -14,7 +14,14 @@ node('CI') {
     currentBuild.projectName = '\'Project for comparing database difference\' ' +
             '(compare difference)) to \'' +
             'Report on the difference between tables and views of two databases'
-    currentBuild.description = env.BUILD_USER_ID
+    def jobUserId, jobUserName
+//then somewhere
+    wrap([$class: 'BuildUser']) {
+        jobUserId = "${BUILD_USER_ID}"
+        jobUserName = "${BUILD_USER}"
+    }
+//then
+    println("Started By: ${jobUserName}")
 
 
     properties([
