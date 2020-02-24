@@ -5,6 +5,7 @@ class Properties {
         static String EMAIL_DIFFERENCE_DB_LIST="Pavel_Horbach1@epam.com, Dmitry_Rubin@epam.com, Ihar_Ilmovsky@epam.com, WFTInternalApplicationsReporting@epam.com"
         static String EMAIL_LEADER_LIST="SpecialEPM-CTCLeaders@epam.com"
         static String EMAIL_TEST="altayev.dauren@yandex.kz"
+        static String EMAIL_TEST2="altayev.dauren@gmail.com"
     }
 
     class Repo {
