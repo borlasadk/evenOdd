@@ -7,7 +7,7 @@ def success(String status) {
 }
 
 def success(String status, String message) {
-    success("${status}", "${message}", Properties.MSTeams.OFFICE365_TEST)
+    success("${status}", "${message}", Properties.MSTeams.OFFICE365_SUCCESS_TEST)
 }
 
 def success(String status, String message, String webhook) {
@@ -19,7 +19,7 @@ def fail(String status) {
 }
 
 def fail(String status, String message) {
-    fail("${status}", "${message}", Properties.MSTeams.OFFICE365_TEST)
+    fail("${status}", "${message}", Properties.MSTeams.OFFICE365_FAILURE_TEST)
 }
 
 def fail(String status, String message, String webhook) {

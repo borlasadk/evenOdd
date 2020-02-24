@@ -20,7 +20,8 @@ class Properties {
             }
 
     class MSTeams {
-        static String OFFICE365_TEST="https://outlook.office.com/webhook/240218d9-8acb-4ac3-a4ad-462a6b1f1613@b41b72d0-4e9f-4c26-8a69-f949f367c91d/JenkinsCI/d1d90b3222544339811f6c1741f44a0b/ad1c7055-6ecf-44cd-a59e-7f65222119bd"
+        static String OFFICE365_SUCCESS_TEST="https://outlook.office.com/webhook/240218d9-8acb-4ac3-a4ad-462a6b1f1613@b41b72d0-4e9f-4c26-8a69-f949f367c91d/JenkinsCI/d1d90b3222544339811f6c1741f44a0b/ad1c7055-6ecf-44cd-a59e-7f65222119bd"
+        static String OFFICE365_FAILURE_TEST="https://outlook.office.com/webhook/240218d9-8acb-4ac3-a4ad-462a6b1f1613@b41b72d0-4e9f-4c26-8a69-f949f367c91d/JenkinsCI/587a1d0eef914b11b4befec52f8a16ec/ad1c7055-6ecf-44cd-a59e-7f65222119bd"
     }
 
     class Git {
