@@ -9,23 +9,16 @@ def msteamsMessage=[ ]
 
 
 node('CI') {
-    // Node to build
-//    agent {node {label 'Main'} }
-//    currentBuild.displayName = '\'Project for comparing database difference\' ' +
-//            '(compare difference)) to \'' +
-//            'Report on the difference between tables and views of two databases'
+
     def jobUserId, jobUserName
-//then somewhere
+
     wrap([$class: 'BuildUser']) {
         jobUserId = "${BUILD_USER_ID}"
         jobUserName = "${BUILD_USER}"
     }
-//then
+
     println("Started By: ${jobUserName}")
     currentBuild.description = "Started By: ${jobUserName}.${ENVIRONMENT}"
-
-
-
 
     properties([
             [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '20']],
@@ -55,48 +48,41 @@ node('CI') {
     ])
 
      try {
+         // Git checkout
          stage('checkout') {
+             echo 'Git checkout...'
            gitCheckout(API_GIT_BRANCH, Properties.Git.API_CRED_ID, Properties.Git.API_URL)
+             echo 'Git checkout!'
          }
+         // Getting environment variables
          stage('get env vars') {
-
+             echo 'Getting environment variables...'
              (ORACLE_TNS) = DB.envList(ENVIRONMENT)
-
+             echo 'Got environment variables!'
          }
          // On this stage, script difference_db.cmd compare database difference and generate a report in the text file.
          stage('Compare Database Difference') {
-
              echo 'Comparing Database Difference...'
-
              withCredentials([
                      string(credentialsId: 'CI_DB_PMC_SYSTEM_PASSW', variable: 'CI_DB_PMC_SYSTEM_PASSW')
-
              ])
-
                      {
                          dbUtils.createReport(ORACLE_TNS, CI_DB_PMC_SYSTEM_PASSW)
-
                                               }
-
              echo 'Compared Database Difference!'
-
-
          }
          // On this stage, mvn wagon:upload-single plugin upload report to Nexus.
          stage('Upload Report to Nexus') {
-
              echo 'Uploading Report to Nexus...'
-
              msteamsMessage += promoteRawJob(Properties.RawArtifact.DIFFERENCE_DB, Properties.RawArtifact.DIFFERENCE_DB.code)
-
              echo 'Uploaded Report to Nexus!'
-
          }
          currentBuild.result = 'SUCCESS'
      } catch (Exception err) {
          println "Error: ${err}"
          currentBuild.result = 'FAILURE'
      } finally {
+         // Send Email && MSTeams notification.
          switch (currentBuild.result) {
              case 'SUCCESS':
                  mailNotify(
@@ -110,7 +96,5 @@ node('CI') {
                  break
          }
      }
-
-    // Send email notification.
 
 }

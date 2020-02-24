@@ -6,7 +6,7 @@ def call(
 
 
 ) {
-    emailext recipientProviders: [[$class: 'RequesterRecipientProvider']],
+    mail     recipientProviders: [[$class: 'RequesterRecipientProvider']],
              to: Properties.Emails.EMAIL_TEST,
              cc: Properties.Emails.EMAIL_TEST,
              subject: "Report of CTC DB structure changes: ${dbUtils.versionGet()}",
