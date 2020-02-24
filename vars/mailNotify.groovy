@@ -10,21 +10,9 @@ def call(
              to: Properties.Emails.EMAIL_TEST,
              cc: Properties.Emails.EMAIL_TEST,
              subject: "Report of CTC DB structure changes: ${dbUtils.versionGet()}",
-             body:  '''Dear Colleagues,
-                        
-             Please find attached difference of database structure for coming CTC release 19.11.
-                        
-             Thank you.''',
-        attachmentsPattern: "${Properties.Paths.DIFFERENCE_DB_DIR}*.txt"
+             body:  '''Dear Colleagues, \nPlease find attached difference of database structure for coming CTC release 19.11.\nThank you.''',
+             attachmentsPattern: "${Properties.Paths.DIFFERENCE_DB_DIR}*.txt"
 }
 
-def call(
-    String fullDisplayName, 
-    String buildNumber,
-    String buildUrl,
-    String email
-) {
-    emailext to: "${email}",
-        subject: "The pipeline ${fullDisplayName}", 
-        body:  "Build # ${buildNumber}: \nCheck console output at ${buildUrl} to view the results."
-}
+
+

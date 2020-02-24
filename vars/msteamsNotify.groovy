@@ -26,6 +26,3 @@ def fail(String status, String message, String webhook) {
     office365ConnectorSend (status: "${status}", message: "${message}", webhookUrl: "${webhook}")
 }
 
-def deployMessage(String branch, String env, String user) {
-    return "${branch} has been deployed on ${env} by ${user}"
-}

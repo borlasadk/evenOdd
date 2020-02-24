@@ -15,24 +15,10 @@ class Properties {
     }
 
     class Paths {
-        static String CI_TOOL_DIR ="D:\\Jenkins_WS\\Common\\tools\\citool"
-        static String CI_TOOL="D:\\Jenkins_WS\\Common\\tools\\citool\\citool.exe"
-        static String COMMON_DIR="D:\\Jenkins_WS\\Common"
-        static String JBOSS_HOME="c:\\jboss-eap-6.4"
-        static String MASTER_NODE="\\\\ci.epm-ctc.projects.epam.com"
-        static String PROJECT_DIR="\\\\epbyminsa0100.minsk.epam.com\\Projects\\EPM-CTC"
-        static String PROJECT_REPOSITORY="http://ci.epm-ctc.projects.epam.com:8081/repository"
-        static String SCRIPTS_DIR="D:\\Jenkins_WS\\Common\\CI\\Scripts"
         static String DIFFERENCE_DB_DIR="Scripts/difference_db/"
-        static String WS_DIR="D:\\Jenkins_WS"
-        static String WS_DIR_MASTER="\\\\ci.epm-ctc.projects.epam.com\\Jenkins_WS"
-    }
+            }
 
     class MSTeams {
-        static String OFFICE365_DEV ="https://outlook.office.com/webhook/7d65dd73-9ea5-4ccc-9d0f-4247c559ca7f@b41b72d0-4e9f-4c26-8a69-f949f367c91d/JenkinsCI/0c762b787c5746e5b0730d683818ede8/2c2aa73b-4560-45b0-8bde-0c20449ddb5b"
-        static String OFFICE365_FRONTEND_SONAR="https://outlook.office.com/webhook/7d65dd73-9ea5-4ccc-9d0f-4247c559ca7f@b41b72d0-4e9f-4c26-8a69-f949f367c91d/JenkinsCI/26e64bb8baba44ba90261adcc0cce648/0db841ad-5bb4-4546-90ed-1f47a2f3dfb2"
-        static String OFFICE365_TEAM="https://outlook.office.com/webhook/667d8321-74f1-4224-8303-3f4a1ea21766@b41b72d0-4e9f-4c26-8a69-f949f367c91d/JenkinsCI/df9b5680015a4e4cb965219d52d758c5/2c2aa73b-4560-45b0-8bde-0c20449ddb5b"
-        static String RELEASE_PREFIX="https://artifactory.epam.com/artifactory/EPM-CTC/releases"
         static String OFFICE365_TEST="https://outlook.office.com/webhook/240218d9-8acb-4ac3-a4ad-462a6b1f1613@b41b72d0-4e9f-4c26-8a69-f949f367c91d/JenkinsCI/d1d90b3222544339811f6c1741f44a0b/ad1c7055-6ecf-44cd-a59e-7f65222119bd"
     }
 
