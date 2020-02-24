@@ -23,7 +23,10 @@ node('CI') {
 //then
     println("Started By: ${jobUserName}")
     currentBuild.description = "Started By: ${jobUserName}.${ENVIRONMENT}"
-    job.description = "Project for comparing database difference"
+    item = Jenkins.instance.getItemByFullName("DIFFERENCE_DB")
+    item.setDescription("This description was changed by script")
+    item.save()
+
 
 
     properties([
