@@ -28,6 +28,7 @@ node('CI') {
 
 
     properties([
+            [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '20']],
             disableConcurrentBuilds(),
             parameters([
                     gitParameter(
@@ -48,8 +49,7 @@ node('CI') {
                             name: 'ENVIRONMENT',
                             choices: DB.envList(),
                             description: DB.envDescription()
-                    ),
-                    [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '20']]
+                    )
 
             ])
     ])
