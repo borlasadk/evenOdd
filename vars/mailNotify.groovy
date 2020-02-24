@@ -12,9 +12,9 @@ def call(
              subject: "Report of CTC DB structure changes: ${dbUtils.versionGet()}",
              body:  '''Dear Colleagues,
                         
-                        Please find attached difference of database structure for coming CTC release 19.11.
+             Please find attached difference of database structure for coming CTC release 19.11.
                         
-                        Thank you.''',
+             Thank you.''',
         attachmentsPattern: "${Properties.Paths.DIFFERENCE_DB_DIR}*.txt"
 }
 
