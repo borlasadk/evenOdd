@@ -23,9 +23,7 @@ node('CI') {
 //then
     println("Started By: ${jobUserName}")
     currentBuild.description = "Started By: ${jobUserName}.${ENVIRONMENT}"
-    item = Jenkins.instance.getItemByFullName("DIFFERENCE_DB")
-    item.setDescription("This description was changed by script")
-    item.save()
+
 
 
 
@@ -50,7 +48,8 @@ node('CI') {
                             name: 'ENVIRONMENT',
                             choices: DB.envList(),
                             description: DB.envDescription()
-                    )
+                    ),
+                    [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '20']]
 
             ])
     ])
