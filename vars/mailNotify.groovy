@@ -10,13 +10,11 @@ def call(
              to: Properties.Emails.EMAIL_TEST,
              cc: Properties.Emails.EMAIL_TEST,
              subject: "Report of CTC DB structure changes: ${dbUtils.versionGet()}",
-             body:  '''<p>Dear Colleagues,</p>
-                        <p> </p>
-                        <p></a>. </p>
-                        <p> </p>
-                        <p>Please find attached difference of database structure for coming CTC release 19.11.</a>.</p>
-                        <p> </p>
-                        <p>Thank you.</p>''',
+             body:  '''Dear Colleagues,
+                        
+                        Please find attached difference of database structure for coming CTC release 19.11.
+                        
+                        Thank you.''',
         attachmentsPattern: "${Properties.Paths.DIFFERENCE_DB_DIR}*.txt"
 }
 
