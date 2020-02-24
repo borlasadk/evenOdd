@@ -22,7 +22,7 @@ node('CI') {
     }
 //then
     println("Started By: ${jobUserName}")
-    currentBuild.description = "Started By: ${jobUserName} . ${Properties.DB.value}"
+    currentBuild.description = "Started By: ${jobUserName} . ${ENVIRONMENT}"
 
 
     properties([
